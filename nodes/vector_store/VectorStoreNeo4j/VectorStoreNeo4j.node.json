@@ -1,0 +1,21 @@
+{
+	"node": "vectorStoreNeo4j",
+	"nodeVersion": "1.0",
+	"codexVersion": "1.0",
+    "categories": ["AI"],
+    "subcategories": {
+        "AI": ["Vector Stores"]
+    },
+    "resources": {
+		"credentialDocumentation": [
+			{
+				"url": "https://neo4j.com/labs/genai-ecosystem/langchain-js/"
+			}
+		],
+		"primaryDocumentation": [
+			{
+				"url": "https://neo4j.com/"
+			}
+		]
+	}
+}

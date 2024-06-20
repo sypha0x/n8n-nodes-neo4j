@@ -1,6 +1,8 @@
 import {
 	ICredentialType,
 	NodePropertyTypes,
+	IAuthenticateGeneric,
+	ICredentialTestRequest
 } from 'n8n-workflow';
 
 
@@ -36,4 +38,19 @@ export class Neo4j implements ICredentialType {
 			default: 'http://localhost:7474',
 		},
 	];
+	authenticate = {
+		type: 'generic',
+		properties: {
+			auth: {
+				username: '={{$credentials.username}}',
+				password: '={{$credentials.password}}',
+			},
+		},
+	} as IAuthenticateGeneric;
+	test: ICredentialTestRequest = {
+		request: {
+			baseURL: '={{$credentials.url}}',
+			url: '/db/{{$credentials.database}}/tx/commits',
+		},
+	};
 }

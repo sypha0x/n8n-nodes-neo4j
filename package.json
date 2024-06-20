@@ -1,19 +1,51 @@
 {
-  "name": "n8s_neo4j",
+  "name": "n8n-nodes-neo4j",
   "version": "0.1.0",
-  "description": "Simple n8n.io node to support neo4j access.",
-  "main": "Neo4j.node.ts",
+  "description": "N8N node to work with your data in Neo4j Vector Store",
+  "main": "index.js",
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "n8n-community-node-package"
+  ],
+  "n8n": {
+    "n8nNodesApiVersion": 1,
+    "credentials": [
+      "dist/credentials/Neo4j.credentials.js"
+    ],
+    "nodes": [
+      "dist/nodes/VectorStoreNeo4j.node.js"
+    ]
+  },
   "devDependencies": {
-    "n8n-node-dev": "^0.15.0",
-    "typescript": "~3.9.7"
+    "@langchain/community": "0.2.2",
+    "langchain": "0.2.2",
+    "@types/request": "^2.48.12",
+    "@typescript-eslint/parser": "~5.45",
+    "eslint-plugin-n8n-nodes-base": "^1.11.0",
+    "gulp": "^4.0.2",
+    "prettier": "^2.7.1",
+    "typescript": "~4.8.4",
+    "@types/lodash": "^4.14.195"
+  },
+  "peerDependencies": {
+    "n8n-workflow": "1.44.0"
+  },
+  "dependencies": {
+    "neo4j-driver": "^5.21.0",
+    "n8n-workflow": "1.44.0",
+    "tmp-promise": "3.0.3",
+    "lodash": "4.17.21"
   },
   "scripts": {
-    "//": "Change file \\node_modules\\n8n-node-dev\\dist\\src\\Build.js: const tscPath = path_1.join(__dirname, '../../../../node_modules/typescript/bin/tsc');",
-    "build": "n8n-node-dev build"
+    "build": "tsc && gulp build:icons",
+    "dev": "tsc --watch",
+    "format": "prettier nodes credentials --write",
+    "lint": "eslint nodes credentials package.json",
+    "lintfix": "eslint nodes credentials package.json --fix",
+    "prepublishOnly": "npm run build && npm run lint -c .eslintrc.prepublish.js nodes credentials package.json"
   },
-  "author": "Ivan Lukic",
-  "license": "ISC",
-  "dependencies": {
-    "lodash": "^4.17.21"
-  }
+  "author": "Claire Champourlier",
+  "license": "MIT"
 }

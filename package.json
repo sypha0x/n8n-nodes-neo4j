@@ -15,7 +15,7 @@
       "dist/credentials/Neo4j.credentials.js"
     ],
     "nodes": [
-      "dist/nodes/VectorStoreNeo4j.node.js"
+      "dist/nodes/vector_store/VectorStoreNeo4j/VectorStoreNeo4j.node.js"
     ]
   },
   "devDependencies": {

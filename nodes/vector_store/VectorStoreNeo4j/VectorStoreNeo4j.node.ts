@@ -3,6 +3,9 @@ import { Neo4jVectorStore } from '@langchain/community/vectorstores/neo4j_vector
 import { createVectorStoreNode } from '../shared/createVectorStoreNode';
 import { metadataFilterField } from '../../../utils/sharedFields';
 
+
+const defaultQuery = 'MATCH (n) RETURN n.id as Id, n.name as Name, n.content as Content LIMIT 10'
+
 const sharedFields: INodeProperties[] = [
 	{
 		displayName: 'Neo4j Index',
@@ -24,7 +27,7 @@ const insertFields: INodeProperties[] = [
 				displayName: 'Cypher Query',
 				name: 'cypherQuery',
 				type: 'string',
-				default: 'MATCH (n) RETURN n.id as Id, n.name as Name, n.content as Content LIMIT 10',
+				default: defaultQuery,
 				description: 'Cypher query to use for matching documents',
 			},
 		],
@@ -55,7 +58,7 @@ export const VectorStoreNeo4j  = createVectorStoreNode({
 		icon: 'file:neo4j.png',
 		displayName: 'Neo4j Vector Store',
 		docsUrl:
-			'https://docs.n8n.io/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.vectorstoresupabase/',
+			'https://github.com/Kurea/n8n-nodes-neo4j/blob/main/README.md',
 		name: 'vectorStoreNeo4j',
 		credentials: [
 			{
@@ -72,9 +75,9 @@ export const VectorStoreNeo4j  = createVectorStoreNode({
 		const indexName = context.getNodeParameter('neo4jIndex', itemIndex, 'vector', {
 			extractValue: true,
 		}) as string;
-		const cypherQuery = context.getNodeParameter('cypherQuery', itemIndex, '', {
-			extractValue: true,
-		}) as string;
+		const options = context.getNodeParameter('options', itemIndex, {cypherQuery:undefined}) as {
+			cypherQuery: string;
+		};
 		const credentials = await context.getCredentials('neo4j');
 		const config = {
 			url: credentials.url as string, // URL for the Neo4j instance
@@ -86,17 +89,18 @@ export const VectorStoreNeo4j  = createVectorStoreNode({
 			nodeLabel: "Chunk", // Label for the nodes in the graph
 			textNodeProperty: "text", // Property of the node containing text
 			embeddingNodeProperty: "embedding", // Property of the node containing embedding
-			retrievalQuery: cypherQuery
+			retrievalQuery: options.cypherQuery
 		  };
+		
 		return await Neo4jVectorStore.fromExistingIndex(embeddings, config);
 	},
 	async populateVectorStore(context, embeddings, documents, itemIndex) {
 		const indexName = context.getNodeParameter('neo4jIndex', itemIndex, 'vector', {
 			extractValue: true,
 		}) as string;
-		const cypherQuery = context.getNodeParameter('cypherQuery', itemIndex, '', {
-			extractValue: true,
-		}) as string;
+		const options = context.getNodeParameter('options', itemIndex, {cypherQuery:undefined}) as {
+			cypherQuery: string;
+		};
 		const credentials = await context.getCredentials('neo4j');
 
 		const config = {
@@ -109,7 +113,7 @@ export const VectorStoreNeo4j  = createVectorStoreNode({
 			nodeLabel: "Chunk", // Label for the nodes in the graph
 			textNodeProperty: "text", // Property of the node containing text
 			embeddingNodeProperty: "embedding", // Property of the node containing embedding
-			retrievalQuery: cypherQuery
+			retrievalQuery: options.cypherQuery
 
 		  };
 		  		  

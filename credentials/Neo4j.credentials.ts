@@ -1,8 +1,7 @@
 import {
 	ICredentialType,
 	NodePropertyTypes,
-	IAuthenticateGeneric,
-	ICredentialTestRequest
+	IAuthenticateGeneric
 } from 'n8n-workflow';
 
 
@@ -23,6 +22,9 @@ export class Neo4j implements ICredentialType {
 			displayName: 'Password',
 			name: 'password',
 			type: 'string' as NodePropertyTypes,
+			typeOptions: {
+				password: true,
+			},
 			default: '',
 		},
 		{
@@ -35,7 +37,7 @@ export class Neo4j implements ICredentialType {
 			displayName: 'Url',
 			name: 'url',
 			type: 'string' as NodePropertyTypes,
-			default: 'http://localhost:7474',
+			default: 'neo4j+s://xxxxxxxx.databases.neo4j.io:7687',
 		},
 	];
 	authenticate = {
@@ -47,10 +49,4 @@ export class Neo4j implements ICredentialType {
 			},
 		},
 	} as IAuthenticateGeneric;
-	test: ICredentialTestRequest = {
-		request: {
-			baseURL: '={{$credentials.url}}',
-			url: '/db/{{$credentials.database}}/tx/commits',
-		},
-	};
 }

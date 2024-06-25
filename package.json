@@ -15,30 +15,28 @@
       "dist/credentials/Neo4j.credentials.js"
     ],
     "nodes": [
-      "dist/nodes/embeddings/EmbeddingsHuggingFaceTransformers/EmbeddingsHuggingFaceTransformers.node.js",
       "dist/nodes/vector_store/VectorStoreNeo4j/VectorStoreNeo4j.node.js"
     ]
   },
   "devDependencies": {
     "@langchain/community": "0.2.2",
-    "langchain": "0.2.2",
+    "@types/lodash": "^4.14.195",
     "@types/request": "^2.48.12",
     "@typescript-eslint/parser": "~5.45",
     "eslint-plugin-n8n-nodes-base": "^1.11.0",
     "gulp": "^4.0.2",
+    "langchain": "0.2.2",
     "prettier": "^2.7.1",
-    "typescript": "~4.8.4",
-    "@types/lodash": "^4.14.195"
+    "typescript": "~4.8.4"
   },
   "peerDependencies": {
-    "@xenova/transformers": "^2.17.2",
     "n8n-workflow": "1.44.0"
   },
   "dependencies": {
-    "neo4j-driver": "^5.21.0",
+    "lodash": "4.17.21",
     "n8n-workflow": "1.44.0",
-    "tmp-promise": "3.0.3",
-    "lodash": "4.17.21"
+    "neo4j-driver": "^5.21.0",
+    "tmp-promise": "3.0.3"
   },
   "scripts": {
     "build": "tsc && gulp build:icons",

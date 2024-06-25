@@ -33,8 +33,6 @@
     "n8n-workflow": "1.44.0"
   },
   "dependencies": {
-    "lodash": "4.17.21",
-    "n8n-workflow": "1.44.0",
     "neo4j-driver": "^5.21.0",
     "tmp-promise": "3.0.3"
   },
@@ -46,6 +44,17 @@
     "lintfix": "eslint nodes credentials package.json --fix",
     "prepublishOnly": "npm run build && npm run lint -c .eslintrc.prepublish.js nodes credentials package.json"
   },
-  "author": "Claire Champourlier",
+  "author": {
+    "name": "Claire Champourlier",
+    "email": "claire@interrest.fr",
+    "url": "https://interrest.fr"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kurea/n8n-nodes-neo4j.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Kurea/n8n-nodes-neo4j/issues"
+  },
   "license": "MIT"
 }

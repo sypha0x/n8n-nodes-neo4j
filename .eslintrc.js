@@ -34,8 +34,10 @@ module.exports = {
 			plugins: ['eslint-plugin-n8n-nodes-base'],
 			extends: ['plugin:n8n-nodes-base/credentials'],
 			rules: {
-				'n8n-nodes-base/cred-class-field-documentation-url-missing': 'off',
 				'n8n-nodes-base/cred-class-field-documentation-url-miscased': 'off',
+				'n8n-nodes-base/cred-class-name-unsuffixed': 'off',
+				'n8n-nodes-base/cred-class-field-name-unsuffixed': 'off',
+				'n8n-nodes-base/cred-class-field-display-name-missing-api': 'off'
 			},
 		},
 		{

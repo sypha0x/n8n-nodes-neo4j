@@ -11,8 +11,7 @@ const sharedFields: INodeProperties[] = [
 		displayName: 'Neo4j Index',
 		name: 'neo4jIndex',
 		type: 'string',
-		default: 'vector',
-		required: false
+		default: 'vector'
 	}
 ]
 const insertFields: INodeProperties[] = [

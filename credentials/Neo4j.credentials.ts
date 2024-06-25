@@ -1,6 +1,6 @@
 import {
 	ICredentialType,
-	NodePropertyTypes,
+	INodeProperties,
 	IAuthenticateGeneric
 } from 'n8n-workflow';
 
@@ -8,20 +8,21 @@ import {
 export class Neo4j implements ICredentialType {
 	name = 'neo4j';
 	displayName = 'Neo4j';
-	properties = [
+	documentationUrl = 'https://neo4j.com/docs/browser-manual/current/operations/dbms-connection/';
+	properties: INodeProperties[] = [
 		// The credentials to get from user and save encrypted.
 		// Properties can be defined exactly in the same way
 		// as node properties.
 		{
 			displayName: 'Username',
 			name: 'username',
-			type: 'string' as NodePropertyTypes,
+			type: 'string',
 			default: 'neo4j',
 		},
 		{
 			displayName: 'Password',
 			name: 'password',
-			type: 'string' as NodePropertyTypes,
+			type: 'string',
 			typeOptions: {
 				password: true,
 			},
@@ -30,17 +31,17 @@ export class Neo4j implements ICredentialType {
 		{
 			displayName: 'Database',
 			name: 'database',
-			type: 'string' as NodePropertyTypes,
+			type: 'string',
 			default: 'neo4j',
 		},
 		{
 			displayName: 'Url',
 			name: 'url',
-			type: 'string' as NodePropertyTypes,
+			type: 'string',
 			default: 'neo4j+s://xxxxxxxx.databases.neo4j.io:7687',
 		},
 	];
-	authenticate = {
+	authenticate: IAuthenticateGeneric = {
 		type: 'generic',
 		properties: {
 			auth: {
@@ -48,5 +49,5 @@ export class Neo4j implements ICredentialType {
 				password: '={{$credentials.password}}',
 			},
 		},
-	} as IAuthenticateGeneric;
+	};
 }

@@ -1,6 +1,6 @@
 # n8n-nodes-neo4j
 
-This is an n8n community node. It lets you use Neo4j in your n8n workflows using [LangChain](https://langchain.com/).
+This is an n8n community node for Neo4j integration with LangChain support. It provides both vector store and graph database operations.
 
 [Neo4j](https://neo4j.com/) is a graph database with vector search for knowledge graphs.
 
@@ -10,9 +10,21 @@ This is an n8n community node. It lets you use Neo4j in your n8n workflows using
 [Operations](#operations)  
 [Credentials](#credentials)
 [Compatibility](#compatibility)  
-[Usage](#usage)  <!-- delete if not using this section -->  
+[Usage](#usage)
 [Resources](#resources)  
-[Version history](#version-history)  <!-- delete if not using this section -->  
+[Version history](#version-history)
+
+
+## Features
+
+- Vector Store Operations:
+  - Similarity Search: Search for similar vectors in the database
+  - Add Texts: Add new texts to the vector store
+
+- Graph Database Operations:
+  - Execute Query: Run custom Cypher queries
+  - Create Node: Create new nodes with labels and properties
+  - Create Relationship: (Coming soon) Create relationships between nodes
 
 ## Installation
 
@@ -20,38 +32,48 @@ Follow the [installation guide](https://docs.n8n.io/integrations/community-nodes
 
 ## Operations
 
-_List the operations supported by your node._
+### Vector Store Operations
+
+#### Similarity Search
+1. Select "Vector Store" as the resource
+2. Choose "Similarity Search" operation
+3. Enter the query text
+4. Execute to find similar vectors
+
+#### Add Texts
+1. Select "Vector Store" as the resource
+2. Choose "Add Texts" operation
+3. Enter the texts to add
+4. Execute to store the texts as vectors
+
+### Graph Database Operations
+
+#### Execute Query
+1. Select "Graph Database" as the resource
+2. Choose "Execute Query" operation
+3. Enter your Cypher query
+4. Execute to run the query
+
+#### Create Node
+1. Select "Graph Database" as the resource
+2. Choose "Create Node" operation
+3. Enter the node label
+4. Provide node properties as JSON
+5. Execute to create the node
 
 ## Credentials
 
-To connect to your graph database, you will need your instance url (including protecol and port), your database name and a user/password.
+1. Add Neo4j credentials in n8n:
+   - Connection URI (e.g., `neo4j://localhost:7687`)
+   - Username
+   - Password
+   - Database name
+
+2. The node will appear in the n8n nodes panel under "Neo4j"
 
 ## Compatibility
 
-Tested against n8n 1.45.1
-
-## Usage
-
-Use as any other AI VectorStore node in n8n. AI Nodes are still in Beta state and are only compatible with the Docker image `docker.n8n.io/n8nio/n8n:ai-beta`.
-
-### Node parameters
-#### Operation Mode
-Vector Store nodes in n8n have three modes: Get Many, Insert Documents and Retrieve Documents. The mode you select determines the operations you can perform with the node and what inputs and outputs are available.
-- Get Many
-In this mode, you can retrieve multiple documents from your vector database by providing a prompt. The prompt will be embedded and used for similarity search. The node will return the documents that are most similar to the prompt with their similarity score. This is useful if you want to retrieve a list of similar documents and pass them to an agent as additional context.
-- Insert Documents
-Use insert documents mode to insert new documents into your vector database.
-- Retrieve Documents (For Agent/Chain)
-Use Retrieve Documents mode with a vector-store retriever to retrieve documents from a vector database and provide them to the retriever connected to a chain. In this mode you must connect the node to a retriever node or root node.
-
-Commun paramter : Neo4j index name
-
-Additional parameters for Get Many:
-Prompt
-Limit
-
-Additional parameters for Insert Documents/Retrieve documents:
-Cypher Query
+Tested against n8n 1.88.0
 
 ## Resources
 
@@ -61,3 +83,26 @@ Cypher Query
 ## Version history
 
 1.0 : first runnable version of Neo4j VectorStore node
+
+
+## Development
+
+1. Clone this repository
+2. Install dependencies: `npm install`
+3. Build: `npm run build`
+4. Link to n8n: `npm link`
+5. In your n8n installation: `npm link n8n-nodes-neo4j`
+
+## Version history
+
+### Version 0.1.x
+tested against n8n 1.45.1 to 1.86.0
+include vector stores retrieval only
+
+### Version 0.2.x
+tested against n8n 1.88.0
+include vector stores and graph 
+
+## License
+
+MIT 

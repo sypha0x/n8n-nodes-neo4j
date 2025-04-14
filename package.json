@@ -1,49 +1,16 @@
 {
   "name": "n8n-nodes-neo4j",
-  "version": "0.1.0",
-  "description": "N8N node to work with your data in Neo4j Vector Store",
-  "main": "index.js",
-  "files": [
-    "dist"
-  ],
+  "version": "0.2.0",
+  "description": "n8n node for Neo4j with LangChain integration, supporting vector stores and graph operations",
   "keywords": [
-    "n8n-community-node-package"
+    "n8n-community-node-package",
+    "neo4j",
+    "langchain",
+    "vector-store",
+    "graph-database"
   ],
-  "n8n": {
-    "n8nNodesApiVersion": 1,
-    "credentials": [
-      "dist/credentials/Neo4j.credentials.js"
-    ],
-    "nodes": [
-      "dist/nodes/vector_store/VectorStoreNeo4j/VectorStoreNeo4j.node.js"
-    ]
-  },
-  "devDependencies": {
-    "@langchain/community": "0.2.2",
-    "@types/lodash": "^4.14.195",
-    "@types/request": "^2.48.12",
-    "@typescript-eslint/parser": "~5.45",
-    "eslint-plugin-n8n-nodes-base": "^1.11.0",
-    "gulp": "^4.0.2",
-    "langchain": "0.2.2",
-    "prettier": "^2.7.1",
-    "typescript": "~4.8.4"
-  },
-  "peerDependencies": {
-    "n8n-workflow": "1.44.0"
-  },
-  "dependencies": {
-    "neo4j-driver": "^5.21.0",
-    "tmp-promise": "3.0.3"
-  },
-  "scripts": {
-    "build": "tsc && gulp build:icons",
-    "dev": "tsc --watch",
-    "format": "prettier nodes credentials --write",
-    "lint": "eslint nodes credentials package.json",
-    "lintfix": "eslint nodes credentials package.json --fix",
-    "prepublishOnly": "npm run build && npm run lint -c .eslintrc.prepublish.js nodes credentials package.json"
-  },
+  "license": "MIT",
+  "homepage": "",
   "author": {
     "name": "Claire Champourlier",
     "email": "claire@interrest.fr",
@@ -56,5 +23,42 @@
   "bugs": {
     "url": "https://github.com/Kurea/n8n-nodes-neo4j/issues"
   },
-  "license": "MIT"
-}
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc && gulp build:icons",
+    "dev": "tsc --watch",
+    "format": "prettier nodes credentials --write .",
+    "lint": "eslint nodes credentials package.json",
+    "lintfix": "eslint nodes credentials package.json --fix",
+    "prepublishOnly": "npm run build && npm run lint -c .eslintrc.prepublish.js nodes credentials package.json"
+  },
+  "files": [
+    "dist"
+  ],
+  "n8n": {
+    "n8nNodesApiVersion": 1,
+    "credentials": [
+      "dist/credentials/Neo4jApi.credentials.js"
+    ],
+    "nodes": [
+      "dist/nodes/Neo4j/Neo4j.node.js"
+    ]
+  },
+  "dependencies": {
+    "@langchain/community": "^0.3.24",
+    "langchain": "^0.3.11",
+    "n8n-workflow": "^1.82.0",
+    "neo4j-driver": "^5.17.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.19",
+    "@typescript-eslint/eslint-plugin": "^7.0.1",
+    "@typescript-eslint/parser": "^7.15.0",
+    "eslint": "^8.56.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-n8n-nodes-base": "^1.16.1",
+    "gulp": "^4.0.2",
+    "prettier": "^3.3.2",
+    "typescript": "^5.5.3"
+  }
+} 

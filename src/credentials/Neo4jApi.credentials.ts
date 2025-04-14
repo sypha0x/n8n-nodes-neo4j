@@ -1,6 +1,6 @@
 import {
 	IAuthenticateGeneric,
-	ICredentialTestRequest,
+//	ICredentialTestRequest,
 	ICredentialType,
 	INodeProperties,
 } from 'n8n-workflow';

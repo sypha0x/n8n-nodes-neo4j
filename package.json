@@ -1,6 +1,6 @@
 {
   "name": "n8n-nodes-neo4j",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "n8n node for Neo4j with LangChain integration, supporting vector stores and graph operations",
   "keywords": [
     "n8n-community-node-package",
@@ -27,10 +27,10 @@
   "scripts": {
     "build": "tsc && gulp build:icons",
     "dev": "tsc --watch",
-    "format": "prettier nodes credentials --write .",
-    "lint": "eslint nodes credentials package.json",
-    "lintfix": "eslint nodes credentials package.json --fix",
-    "prepublishOnly": "npm run build && npm run lint -c .eslintrc.prepublish.js nodes credentials package.json"
+    "format": "prettier src/**.ts  --write .",
+    "lint": "eslint src/**/*.ts  package.json",
+    "lintfix": "eslint src/**/*.ts  package.json --fix",
+    "prepublishOnly": "npm run build && npm run lint -c .eslintrc.prepublish.js"
   },
   "files": [
     "dist"

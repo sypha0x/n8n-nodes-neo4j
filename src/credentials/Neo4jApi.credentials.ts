@@ -55,11 +55,11 @@ export class Neo4jApi implements ICredentialType {
 			},
 		},
 	};
-
+/*
 	test: ICredentialTestRequest = {
 		request: {
 			baseURL: '={{$credentials.uri}}',
 			url: '/',
 		},
-	};
+	};*/
 } 

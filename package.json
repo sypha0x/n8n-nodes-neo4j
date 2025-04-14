@@ -1,6 +1,6 @@
 {
   "name": "n8n-nodes-neo4j",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "n8n node for Neo4j with LangChain integration, supporting vector stores and graph operations",
   "keywords": [
     "n8n-community-node-package",

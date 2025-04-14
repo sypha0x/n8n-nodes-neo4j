@@ -353,7 +353,8 @@ export class Neo4j implements INodeType {
 					if (operation === 'executeQuery') {
 						const cypherQuery = this.getNodeParameter('cypherQuery', 0) as string;
 						const result = await graph.query(cypherQuery);
-						return [this.helpers.returnJsonArray(result.map(record => record.toObject()))];
+						console.log(result);
+						return [this.helpers.returnJsonArray(result)];
 					}
 
 					if (operation === 'createNode') {
@@ -363,7 +364,7 @@ export class Neo4j implements INodeType {
 						);
 						const query = `CREATE (n:${nodeLabel} $props) RETURN n`;
 						const result = await graph.query(query, { props: nodeProperties });
-						return [this.helpers.returnJsonArray(result.map(record => record.toObject()))];
+						return [this.helpers.returnJsonArray(result)];
 					}
 
 					if (operation === 'createRelationship') {
